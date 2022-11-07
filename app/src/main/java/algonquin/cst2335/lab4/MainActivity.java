@@ -76,14 +76,24 @@ public class MainActivity extends AppCompatActivity {
         //Log.w( "MainActivity", "In onCreate() - Loading Widgets" );
     }
 
-
+    /**
+     * Takes a String and compares each char in the string to the
+     * set conditions. Sends a toast message to the user with the
+     * missing password requirements.
+     * Uses booleans as flags to see if the password matches the
+     * requirements.
+     *
+     * @param password The string in the the password field.
+     * @return boolean true or false.
+     *
+     **/
     boolean checkPasswordComplexity(String password){
-        int passLen = password.length();
+        int passwordLength = password.length();
         boolean foundUpperCase = false;
         boolean foundLowerCase = false;
         boolean foundNumber = false;
         boolean foundSpecial = false;
-        for(int i = 0; i < passLen; i++){
+        for(int i = 0; i < passwordLength; i++){
             Character c = password.charAt(i);
             if(isUpperCase(c)){
                 foundUpperCase = true;
@@ -98,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
                 foundSpecial = true;
             }
         }
-        if(passLen < 8){
+        if(passwordLength < 8){
             Toast.makeText(getApplicationContext(), "Password must be at least 8 characters long", Toast.LENGTH_SHORT).show();
             return false;
         }
@@ -124,6 +134,12 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     * Defines our usable special characters. If the passed char
+     * contains any of the cases it will return true.
+     * @param c a char from the password string.
+     * @return boolean true or false.
+     **/
     boolean isSpecialCharacter(char c) {
         switch (c) {
             case '#':
